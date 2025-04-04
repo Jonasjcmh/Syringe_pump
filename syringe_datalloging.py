@@ -12,16 +12,13 @@ BAUD_RATE = 115200
 X_MIN, X_MAX = 0, 50  # Movement range for X-axis
 Y_MIN, Y_MAX = 0, 50  # Movement range for Y-axis
 FREQ = 0.5  # Frequency of movement (Hz), adjust between 0.5 and 1.5 Hz
-SPEED = 3000  # Movement speed in mm/min
 
 # Establish serial communication
 ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=2)
-time.sleep(2)  # Wait for connection to establish
 
 # Home X and Y axes
 ser.write(b"G28 X Y\n")  # Home both axes
 ser.flush()
-time.sleep(5)  # Wait for homing to complete
 
 # Enable motors and set speed
 ser.write(b"M17\n")  # Enable motors
@@ -73,7 +70,6 @@ with open(".venv/Include/motion_log.csv", mode="w", newline="") as file:
         print("Motion stopped by user.")
 
 # Return to home position before stopping
-ser.write(b"G28 X Y\n")  # Return to home position
 ser.flush()
 time.sleep(5)  # Wait for homing to complete
 
