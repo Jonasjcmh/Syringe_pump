@@ -57,7 +57,7 @@ ser.flush()
 time.sleep(1)
 
 # -------- Open CSV log file --------
-with open("motion_log_05Hz.csv", mode="w", newline="") as file:
+with open("datasets/motion_log_05Hz.csv", mode="w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(["Time (s)", "Pressure 1 (kPa)", "Pressure 2 (kPa)", "Switch State"])
 
@@ -138,7 +138,7 @@ arduino.close()
 print("Motion complete. Data saved to motion_log.csv.")
 
 # -------- Plotting --------
-df = pd.read_csv("motion_log_05Hz.csv")
+df = pd.read_csv("datasets/motion_log_05Hz.csv")
 
 # Clean up and convert data
 df["Pressure 1 (kPa)"] = pd.to_numeric(df["Pressure 1 (kPa)"], errors="coerce").fillna(0)
