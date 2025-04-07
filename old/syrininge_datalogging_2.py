@@ -44,7 +44,7 @@ ser.write(b"M92 X178 Y-178\n")
 time.sleep(1)
 
 # Open CSV for logging
-with open("motion_log.csv", mode="w", newline="") as file:
+with open("../motion_log.csv", mode="w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(["Time (s)", "Phase", "X Target", "Y Target"])
 
