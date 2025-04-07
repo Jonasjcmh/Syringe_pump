@@ -12,10 +12,10 @@ BAUD_PRINTER = 115200
 BAUD_ARDUINO = 9600
 
 # -------- Motion parameters --------
-X_MIN, X_MAX = 0, 40
+X_MIN, X_MAX = 0, 40  ##  20 ml -> 40
 Y_MIN, Y_MAX = 0, 40
 FREQ = 0.5  # Hz
-SPEED = 3000  # mm/min
+SPEED = 3000  # mm/min   5000 1Hz
 
 SPEED_MIN = 1000  # Minimum speed in mm/min
 SPEED_MAX = 5000  # Maximum speed in mm/min
@@ -57,7 +57,7 @@ ser.flush()
 time.sleep(1)
 
 # -------- Open CSV log file --------
-with open("datasets/motion_log_05Hz.csv", mode="w", newline="") as file:
+with open("datasets/motion_log_05Hz_5.csv", mode="w", newline="") as file:
     writer = csv.writer(file)
     writer.writerow(["Time (s)", "Pressure 1 (kPa)", "Pressure 2 (kPa)", "Switch State"])
 
@@ -138,7 +138,7 @@ arduino.close()
 print("Motion complete. Data saved to motion_log.csv.")
 
 # -------- Plotting --------
-df = pd.read_csv("datasets/motion_log_05Hz.csv")
+df = pd.read_csv("datasets/motion_log_05Hz_5.csv")
 
 # Clean up and convert data
 df["Pressure 1 (kPa)"] = pd.to_numeric(df["Pressure 1 (kPa)"], errors="coerce").fillna(0)
